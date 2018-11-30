@@ -16,3 +16,21 @@ campoDigitacao.on("input", function() {
     var qtdCaracteres = conteudoSemEsapco.length;
     $("#contador-caracteres").text(qtdCaracteres);
 });
+
+var tempoRestante = $("#tempo-digitacao").text();
+
+campoDigitacao.one("focus", function() {
+    
+    var cronometroID = setInterval(function() {
+        tempoRestante--;
+        $("#tempo-digitacao").text(tempoRestante);
+
+        if (tempoRestante < 1)
+        {
+            campoDigitacao.attr("disabled", true);
+            clearInterval(cronometroID);
+        }
+    }, 1000);
+
+    console.log(cronometroID);
+});
