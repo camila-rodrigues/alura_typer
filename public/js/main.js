@@ -18,6 +18,12 @@ function atualizaTamanhoFrase() {
     tamanhoFrase.text(numPalavras);
 }
 
+function atualizaTempoInicial(tempo) {
+    // Atualizando a variável global com o valor do tempo atualizado
+    tempoInicial = tempo;
+    $("#tempo-digitacao").text(tempo);
+}
+
 function inicializaContadores() {
     campoDigitacao.on("input", function() {
         var conteudo = campoDigitacao.val();
@@ -32,9 +38,9 @@ function inicializaContadores() {
 }
 
 function inicializaCronometro() {
-    var tempoRestante = $("#tempo-digitacao").text();
-
     campoDigitacao.one("focus", function() {
+        var tempoRestante = $("#tempo-digitacao").text();
+        
         $("#botao-reiniciar").attr("disabled", true);
 
         var cronometroID = setInterval(function() {
@@ -58,8 +64,8 @@ function finalizaJogo() {
 }
 
 function inicializaMarcadores() {
-    var frase = $(".frase").text();
     campoDigitacao.on("input", function() {
+        var frase = $(".frase").text();
         var digitado = campoDigitacao.val();
         // ECMAScript 6 disponibliza a função startsWith para comparar strings
         //var comparacao = frase.startsWith(digitado);
